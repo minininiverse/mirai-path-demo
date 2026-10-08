@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIRAI PATH</title>
+
+<style>
+body{
+font-family:sans-serif;
+background:#0F172A;
+color:white;
+margin:0;
+padding:0;
+text-align:center;
+}
+
+.screen{
+display:none;
+padding:40px 20px;
+max-width:500px;
+margin:auto;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:#1E293B;
+padding:20px;
+margin:10px 0;
+border-radius:12px;
+cursor:pointer;
+}
+
+button{
+background:#7C3AED;
+color:white;
+border:none;
+padding:15px 25px;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+}
+
+h1{
+font-size:32px;
+}
+
+.small{
+opacity:0.8;
+font-size:14px;
+}
+</style>
+</head>
+
+<body>
+
+<div id="screen1" class="screen active">
+<h1>MIRAI PATH</h1>
+<p>未来を、体験してから選ぶ。</p>
+
+<div class="card" onclick="selectFuture('転職')">転職後の未来</div>
+<div class="card" onclick="selectFuture('留学')">留学後の未来</div>
+<div class="card" onclick="selectFuture('定年後')">定年後の生活</div>
+<div class="card" onclick="selectFuture('住宅購入')">住宅購入後の生活</div>
+</div>
+
+<div id="screen2" class="screen">
+<h2>価値観診断</h2>
+
+<div class="card" onclick="nextScreen(3)">
+安定を重視する
+</div>
+
+<div class="card" onclick="nextScreen(3)">
+挑戦を重視する
+</div>
+
+<div class="card" onclick="nextScreen(3)">
+自由を重視する
+</div>
+</div>
+
+<div id="screen3" class="screen">
+<h2>未来シミュレーション</h2>
+
+<p id="result"></p>
+
+<button onclick="nextScreen(4)">
+未来体験を予約する
+</button>
+</div>
+
+<div id="screen4" class="screen">
+<h2>未来体験予約</h2>
+
+<p>
+新宿マルイ<br>
+未来体験スタジオ
+</p>
+
+<button>
+予約完了
+</button>
+
+<p class="small">
+※企画提案用モックです
+</p>
+</div>
+
+<script>
+
+let future="";
+
+function selectFuture(type){
+
+future=type;
+
+document
+.getElementById("result")
+.innerHTML=
+"2031年。あなたは「"+future+"」後の人生を歩んでいます。<br><br>新しい環境で成長し、自分らしい未来を実現しています。";
+
+nextScreen(2);
+}
+
+function nextScreen(num){
+
+document
+.querySelectorAll('.screen')
+.forEach(s=>s.classList.remove('active'));
+
+document
+.getElementById('screen'+num)
+.classList.add('active');
+}
+
+</script>
+
+</body>
+</html>
