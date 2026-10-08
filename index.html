@@ -1,23 +1,25 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
 <title>MIRAI PATH</title>
 
 <style>
 
 body{
 margin:0;
-font-family:sans-serif;
 background:#0f172a;
 color:white;
+font-family:-apple-system,BlinkMacSystemFont,sans-serif;
 }
 
 .container{
 max-width:430px;
 margin:auto;
-padding:25px;
+padding:24px;
 }
 
 .screen{
@@ -28,13 +30,32 @@ display:none;
 display:block;
 }
 
+.badge{
+display:inline-block;
+background:#3730a3;
+padding:8px 16px;
+border-radius:999px;
+margin-bottom:20px;
+font-size:13px;
+}
+
+h1{
+font-size:48px;
+line-height:1.2;
+margin-bottom:24px;
+}
+
+h2{
+font-size:32px;
+}
+
 .card{
 background:#1e293b;
+padding:20px;
 border-radius:16px;
-padding:18px;
-margin-bottom:15px;
+margin-bottom:16px;
 cursor:pointer;
-border:1px solid rgba(255,255,255,0.1);
+border:1px solid rgba(255,255,255,0.08);
 }
 
 .card:hover{
@@ -54,38 +75,15 @@ margin-top:20px;
 }
 
 .progress{
-margin-bottom:20px;
-font-size:14px;
-opacity:0.8;
-}
-
-.badge{
-display:inline-block;
-padding:6px 12px;
-background:#312e81;
-border-radius:50px;
-font-size:12px;
+opacity:0.7;
 margin-bottom:15px;
 }
 
-.result-box{
+.result{
 background:#1e293b;
 padding:20px;
 border-radius:16px;
 line-height:1.8;
-}
-
-h1{
-font-size:32px;
-}
-
-h2{
-font-size:24px;
-}
-
-.small{
-font-size:13px;
-opacity:0.7;
 }
 
 .metric{
@@ -95,20 +93,32 @@ border-radius:12px;
 margin-top:10px;
 }
 
+.small{
+opacity:0.7;
+font-size:12px;
+margin-top:20px;
+}
+
 </style>
+
 </head>
 
 <body>
 
 <div class="container">
 
-<!-- 画面1 -->
+<!-- STEP1 -->
 
 <div id="screen1" class="screen active">
 
-<div class="badge">MIRAI PATH</div>
+<div class="badge">
+MIRAI PATH
+</div>
 
-<h1>未来を、<br>体験してから選ぶ。</h1>
+<h1>
+未来を、<br>
+体験してから選ぶ。
+</h1>
 
 <p>
 体験したい未来を選択してください
@@ -132,7 +142,7 @@ margin-top:10px;
 
 </div>
 
-<!-- 画面2 -->
+<!-- STEP2 -->
 
 <div id="screen2" class="screen">
 
@@ -143,4 +153,149 @@ STEP 2 / 4
 <h2>価値観診断</h2>
 
 <p>
+今最も大切にしたいことは？
+</p>
 
+<div class="card" onclick="chooseValue('安定')">
+🛡 安定
+</div>
+
+<div class="card" onclick="chooseValue('挑戦')">
+🚀 挑戦
+</div>
+
+<div class="card" onclick="chooseValue('自由')">
+🌈 自由
+</div>
+
+</div>
+
+<!-- STEP3 -->
+
+<div id="screen3" class="screen">
+
+<div class="progress">
+STEP 3 / 4
+</div>
+
+<h2>未来シミュレーション</h2>
+
+<div class="result">
+
+<p id="futureText"></p>
+
+<div class="metric">
+収入の変化：＋80万円
+</div>
+
+<div class="metric">
+仕事と生活のバランス：82%
+</div>
+
+<div class="metric">
+充実度スコア：88%
+</div>
+
+</div>
+
+<button onclick="goTo(4)">
+未来体験を予約する
+</button>
+
+</div>
+
+<!-- STEP4 -->
+
+<div id="screen4" class="screen">
+
+<div class="progress">
+STEP 4 / 4
+</div>
+
+<h2>未来体験予約</h2>
+
+<p>
+丸井 未来体験スタジオ<br>
+新宿マルイ
+</p>
+
+<div class="card">
+予約可能日：2026/11/15
+</div>
+
+<button onclick="completeBooking()">
+予約する
+</button>
+
+</div>
+
+<!-- 完了画面 -->
+
+<div id="screen5" class="screen">
+
+<h2>
+ご予約を受け付けました。
+</h2>
+
+<p id="summary"></p>
+
+<div class="small">
+※MIRAI PATH企画提案用モック
+</div>
+
+</div>
+
+</div>
+
+<script>
+
+let selectedScenario = "";
+let selectedValue = "";
+
+function goTo(screenNumber){
+
+document.querySelectorAll(".screen").forEach(function(screen){
+screen.classList.remove("active");
+});
+
+document.getElementById("screen"+screenNumber).classList.add("active");
+
+}
+
+function selectScenario(scenario){
+
+selectedScenario = scenario;
+
+goTo(2);
+
+}
+
+function chooseValue(value){
+
+selectedValue = value;
+
+document.getElementById("futureText").innerHTML =
+"2031年。あなたは『" +
+selectedScenario +
+"』後の未来を歩んでいます。<br><br>" +
+selectedValue +
+"を大切にした選択により、新しい環境で成長し、自分らしい人生を実現しています。";
+
+goTo(3);
+
+}
+
+function completeBooking(){
+
+document.getElementById("summary").innerHTML =
+selectedScenario +
+" の未来体験予約が完了しました。";
+
+goTo(5);
+
+}
+
+</script>
+
+</body>
+</html>
