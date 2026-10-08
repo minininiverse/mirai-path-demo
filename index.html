@@ -1,1 +1,146 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>MIRAI PATH</title>
+
+<style>
+
+body{
+margin:0;
+font-family:sans-serif;
+background:#0f172a;
+color:white;
+}
+
+.container{
+max-width:430px;
+margin:auto;
+padding:25px;
+}
+
+.screen{
+display:none;
+}
+
+.active{
+display:block;
+}
+
+.card{
+background:#1e293b;
+border-radius:16px;
+padding:18px;
+margin-bottom:15px;
+cursor:pointer;
+border:1px solid rgba(255,255,255,0.1);
+}
+
+.card:hover{
+background:#334155;
+}
+
+button{
+width:100%;
+padding:16px;
+border:none;
+border-radius:12px;
+background:#7c3aed;
+color:white;
+font-size:16px;
+cursor:pointer;
+margin-top:20px;
+}
+
+.progress{
+margin-bottom:20px;
+font-size:14px;
+opacity:0.8;
+}
+
+.badge{
+display:inline-block;
+padding:6px 12px;
+background:#312e81;
+border-radius:50px;
+font-size:12px;
+margin-bottom:15px;
+}
+
+.result-box{
+background:#1e293b;
+padding:20px;
+border-radius:16px;
+line-height:1.8;
+}
+
+h1{
+font-size:32px;
+}
+
+h2{
+font-size:24px;
+}
+
+.small{
+font-size:13px;
+opacity:0.7;
+}
+
+.metric{
+background:#312e81;
+padding:12px;
+border-radius:12px;
+margin-top:10px;
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="container">
+
+<!-- 画面1 -->
+
+<div id="screen1" class="screen active">
+
+<div class="badge">MIRAI PATH</div>
+
+<h1>未来を、<br>体験してから選ぶ。</h1>
+
+<p>
+体験したい未来を選択してください
+</p>
+
+<div class="card" onclick="selectScenario('転職')">
+💼 転職後の未来
+</div>
+
+<div class="card" onclick="selectScenario('留学')">
+✈️ 留学後の未来
+</div>
+
+<div class="card" onclick="selectScenario('定年後')">
+🌿 定年後の生活
+</div>
+
+<div class="card" onclick="selectScenario('住宅購入')">
+🏠 住宅購入後の生活
+</div>
+
+</div>
+
+<!-- 画面2 -->
+
+<div id="screen2" class="screen">
+
+<div class="progress">
+STEP 2 / 4
+</div>
+
+<h2>価値観診断</h2>
+
+<p>
 
